@@ -24,52 +24,56 @@
 
   <main class="container">
     <section class="page-title">
-      <p class="eyebrow">Portfolio</p>
-      <h1>Activity List</h1>
-      <p>Here are some projects, experiences, and activities I have worked on.</p>
+      <p class="eyebrow">GitHub Activity</p>
+      <h1>GitHub 활동 기록</h1>
+      <p>Monster1365 계정의 공개 저장소와 개발 활동을 소개합니다.</p>
     </section>
 
-    <section class="activity-list" aria-label="Activities">
+    <section class="github-overview" aria-label="GitHub overview">
+      <article class="stat-card">
+        <span class="stat-label">GitHub Profile</span>
+        <strong>Monster1365</strong>
+      </article>
+
+      <article class="stat-card highlight">
+        <span class="stat-label">Estimated Commits</span>
+        <strong id="commitCount">Loading</strong>
+        <div class="commit-meter" aria-hidden="true">
+          <span id="commitMeter"></span>
+        </div>
+      </article>
+
+      <article class="stat-card">
+        <span class="stat-label">Public Repositories</span>
+        <strong id="repoCount">-</strong>
+      </article>
+    </section>
+
+    <section class="visual-section" aria-label="GitHub contribution image">
+      <img src="https://ghchart.rshah.org/2563eb/Monster1365" alt="Monster1365 GitHub contribution chart" />
+    </section>
+
+    <section class="activity-list" id="repoList" aria-label="GitHub repositories">
       <article class="activity-card">
-        <span class="tag">Project</span>
-        <h2>Personal Portfolio Website</h2>
+        <span class="tag">Repository</span>
+        <h2>portfolio</h2>
         <p>
-          Designed and developed a responsive portfolio website using HTML,
-          CSS, and JavaScript.
+          HTML, CSS, JavaScript로 만든 반응형 포트폴리오 웹사이트입니다.
         </p>
       </article>
 
       <article class="activity-card">
-        <span class="tag">Study</span>
-        <h2>Web Development Practice</h2>
+        <span class="tag">GitHub</span>
+        <h2>공개 프로젝트</h2>
         <p>
-          Practiced building layouts, navigation bars, cards, and responsive
-          pages.
-        </p>
-      </article>
-
-      <article class="activity-card">
-        <span class="tag">Teamwork</span>
-        <h2>Group Presentation</h2>
-        <p>
-          Collaborated with teammates to research, prepare slides, and present
-          ideas clearly.
-        </p>
-      </article>
-
-      <article class="activity-card">
-        <span class="tag">Design</span>
-        <h2>UI Design Exploration</h2>
-        <p>
-          Studied modern interface design principles such as spacing, hierarchy,
-          color, and accessibility.
+          페이지가 온라인에서 열리면 GitHub API를 통해 공개 저장소 목록이 자동으로 표시됩니다.
         </p>
       </article>
     </section>
   </main>
 
   <footer>
-    <p>Copyright 2026 Your Name. All rights reserved.</p>
+    <p>Copyright 2026 한서현. All rights reserved.</p>
   </footer>
 
   <script src="script.js"></script>

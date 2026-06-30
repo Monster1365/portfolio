@@ -178,18 +178,14 @@ a {
   text-align: center;
 }
 
-.avatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.profile-photo {
   width: 132px;
   height: 132px;
   margin: 0 auto 20px;
   border-radius: 50%;
-  color: #ffffff;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  font-size: 36px;
-  font-weight: 900;
+  object-fit: cover;
+  border: 5px solid #eef2ff;
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.22);
 }
 
 .profile-card h3 {
@@ -206,6 +202,81 @@ a {
 
 .card {
   padding: 26px;
+}
+
+.github-stats,
+.github-overview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 10px 0 28px;
+}
+
+.stat-card {
+  min-height: 138px;
+  padding: 24px;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.stat-card.highlight {
+  background: linear-gradient(135deg, #1e40af, #0f766e);
+  color: #ffffff;
+}
+
+.stat-label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.stat-card.highlight .stat-label {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.stat-card strong {
+  display: block;
+  font-size: 34px;
+  line-height: 1.1;
+}
+
+.commit-meter {
+  height: 10px;
+  margin-top: 18px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+}
+
+.commit-meter span {
+  display: block;
+  width: 12%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: inherit;
+  transition: width 0.5s ease;
+}
+
+.visual-section {
+  margin: 28px 0 34px;
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.visual-section img {
+  display: block;
+  width: 100%;
+  min-height: 120px;
+  object-fit: contain;
 }
 
 .card h3,
@@ -231,6 +302,34 @@ a {
 .activity-card {
   padding: 26px;
   border-left: 5px solid var(--primary);
+}
+
+.activity-card header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.activity-card a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.activity-card a:hover {
+  color: var(--primary);
+}
+
+.repo-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .tag {
@@ -299,6 +398,11 @@ footer {
   }
 
   .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .github-stats,
+  .github-overview {
     grid-template-columns: 1fr;
   }
 }
