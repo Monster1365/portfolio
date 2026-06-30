@@ -1,6 +1,7 @@
 const menuBtn = document.getElementById("menuBtn");
 const navLinks = document.getElementById("navLinks");
 const githubUsername = "Monster1365";
+const makeWebhookUrl = "https://hook.us1.make.com/your_unique_webhook_id";
 
 menuBtn.addEventListener("click", () => {
   navLinks.classList.toggle("show");
@@ -170,3 +171,50 @@ const loadGitHubActivity = async () => {
 };
 
 loadGitHubActivity();
+
+const contactForm = document.getElementById("contactForm");
+const responseMessage = document.getElementById("responseMessage");
+
+const setFormMessage = (type, message) => {
+  if (!responseMessage) {
+    return;
+  }
+
+  responseMessage.className = `form-message ${type}`;
+  responseMessage.textContent = message;
+};
+
+if (contactForm) {
+  contactForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const name = document.getElementById("visitorName").value.trim();
+    const email = document.getElementById("visitorEmail").value.trim();
+    const message = document.getElementById("visitorMessage").value.trim();
+
+    setFormMessage("info", "AI 에이전트가 질문을 분석 중입니다. 잠시만 기다려주세요.");
+
+    try {
+      const response = await fetch(makeWebhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          visitor_name: name,
+          visitor_email: email,
+          visitor_message: message,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("서버 응답 실패");
+      }
+
+      setFormMessage("success", "질문이 성공적으로 접수되었습니다. 입력하신 메일로 AI의 답변이 곧 발송됩니다.");
+      contactForm.reset();
+    } catch (error) {
+      setFormMessage("error", "접수 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+    }
+  });
+}

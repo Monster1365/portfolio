@@ -284,6 +284,94 @@ a {
   margin-bottom: 10px;
 }
 
+.ai-service {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
+  gap: 28px;
+  align-items: start;
+  margin-top: 34px;
+  padding: 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.ai-service h2 {
+  margin-bottom: 12px;
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.ai-service-copy p {
+  color: var(--muted);
+}
+
+.ai-form {
+  display: grid;
+  gap: 12px;
+}
+
+.ai-form label {
+  color: var(--text);
+  font-weight: 800;
+}
+
+.ai-form input,
+.ai-form textarea {
+  width: 100%;
+  padding: 13px 14px;
+  color: var(--text);
+  font: inherit;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ai-form textarea {
+  min-height: 132px;
+  resize: vertical;
+}
+
+.ai-form input:focus,
+.ai-form textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.ai-form button {
+  width: fit-content;
+  border: 0;
+  cursor: pointer;
+}
+
+.form-message {
+  display: none;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-weight: 800;
+}
+
+.form-message.info {
+  display: block;
+  color: #1d4ed8;
+  background: #dbeafe;
+}
+
+.form-message.success {
+  display: block;
+  color: #047857;
+  background: #d1fae5;
+}
+
+.form-message.error {
+  display: block;
+  color: #b91c1c;
+  background: #fee2e2;
+}
+
 .page-title {
   margin-bottom: 32px;
 }
@@ -404,5 +492,18 @@ footer {
   .github-stats,
   .github-overview {
     grid-template-columns: 1fr;
+  }
+
+  .ai-service {
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
+
+  .ai-service h2 {
+    font-size: 26px;
+  }
+
+  .ai-form button {
+    width: 100%;
   }
 }

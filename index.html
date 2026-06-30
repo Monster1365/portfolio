@@ -92,6 +92,31 @@
         </p>
       </article>
     </section>
+
+    <section class="ai-service" aria-label="AI question service">
+      <div class="ai-service-copy">
+        <p class="eyebrow">AI Survey Service</p>
+        <h2>AI 에이전트에게 질문하기</h2>
+        <p>
+          궁금한 내용을 남기면 AI 에이전트가 질문을 분석하고 입력한 이메일로 답변을 보낼 수 있도록
+          Make.com Webhook과 연결되는 설문 서비스입니다.
+        </p>
+      </div>
+
+      <form class="ai-form" id="contactForm">
+        <label for="visitorName">이름</label>
+        <input type="text" id="visitorName" name="visitorName" placeholder="이름" required />
+
+        <label for="visitorEmail">이메일</label>
+        <input type="email" id="visitorEmail" name="visitorEmail" placeholder="이메일" required />
+
+        <label for="visitorMessage">질문</label>
+        <textarea id="visitorMessage" name="visitorMessage" placeholder="AI 에이전트에게 할 질문을 입력하세요" required></textarea>
+
+        <button class="btn primary" type="submit">AI 에이전트에게 질문하기</button>
+        <div class="form-message" id="responseMessage" role="status" aria-live="polite"></div>
+      </form>
+    </section>
   </main>
 
   <footer>
