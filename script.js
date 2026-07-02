@@ -174,7 +174,6 @@ loadGitHubActivity();
 
 const contactForm = document.getElementById("contactForm");
 const responseMessage = document.getElementById("responseMessage");
-const webhookButton = document.getElementById("webhookButton");
 
 const setFormMessage = (type, message) => {
   if (!responseMessage) {
@@ -212,42 +211,10 @@ if (contactForm) {
         throw new Error("서버 응답 실패");
       }
 
-      setFormMessage("success", "질문이 성공적으로 접수되었습니다. 입력하신 메일로 AI의 답변이 곧 발송됩니다.");
+      setFormMessage("success", "질문이 성공적으로 접수되었습니다. AI 답변 메일이 곧 도착할 예정입니다.");
       contactForm.reset();
     } catch (error) {
       setFormMessage("error", "접수 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
-    }
-  });
-}
-
-if (webhookButton) {
-  webhookButton.addEventListener("click", async () => {
-    webhookButton.disabled = true;
-    webhookButton.textContent = "웹훅 실행 중";
-
-    try {
-      const response = await fetch(makeWebhookUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          event_type: "manual_button_click",
-          source: "portfolio_site",
-          clicked_at: new Date().toISOString(),
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("웹훅 응답 실패");
-      }
-
-      alert("ok");
-    } catch (error) {
-      alert("웹훅 실행 중 오류가 발생했습니다.");
-    } finally {
-      webhookButton.disabled = false;
-      webhookButton.textContent = "웹훅 테스트 실행";
     }
   });
 }

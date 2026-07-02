@@ -347,10 +347,6 @@ a {
   cursor: pointer;
 }
 
-.webhook-button {
-  margin-top: 2px;
-}
-
 .form-message {
   display: none;
   padding: 12px 14px;
