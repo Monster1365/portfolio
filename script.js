@@ -191,6 +191,15 @@ if (contactForm) {
     const name = document.getElementById("visitorName").value.trim();
     const email = document.getElementById("visitorEmail").value.trim();
     const message = document.getElementById("visitorMessage").value.trim();
+    const formPayload = {
+      event_type: "ai_question_submitted",
+      visitor_name: name,
+      visitor_email: email,
+      visitor_message: message,
+      submitted_at: new Date().toISOString(),
+      page_url: window.location.href,
+      user_agent: window.navigator.userAgent,
+    };
 
     setFormMessage("info", "AI 에이전트가 질문을 분석 중입니다. 잠시만 기다려주세요.");
 
@@ -200,11 +209,7 @@ if (contactForm) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          visitor_name: name,
-          visitor_email: email,
-          visitor_message: message,
-        }),
+        body: JSON.stringify(formPayload),
       });
 
       if (!response.ok) {
