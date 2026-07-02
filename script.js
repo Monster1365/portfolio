@@ -1,7 +1,7 @@
 const menuBtn = document.getElementById("menuBtn");
 const navLinks = document.getElementById("navLinks");
 const githubUsername = "Monster1365";
-const makeWebhookUrl = "https://hook.us1.make.com/your_unique_webhook_id";
+const makeWebhookUrl = "https://hook.us2.make.com/smmthulbl3ctxgjs5d1xtfojy7v757e1";
 
 menuBtn.addEventListener("click", () => {
   navLinks.classList.toggle("show");
@@ -174,6 +174,7 @@ loadGitHubActivity();
 
 const contactForm = document.getElementById("contactForm");
 const responseMessage = document.getElementById("responseMessage");
+const webhookButton = document.getElementById("webhookButton");
 
 const setFormMessage = (type, message) => {
   if (!responseMessage) {
@@ -215,6 +216,38 @@ if (contactForm) {
       contactForm.reset();
     } catch (error) {
       setFormMessage("error", "접수 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+    }
+  });
+}
+
+if (webhookButton) {
+  webhookButton.addEventListener("click", async () => {
+    webhookButton.disabled = true;
+    webhookButton.textContent = "웹훅 실행 중";
+
+    try {
+      const response = await fetch(makeWebhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          event_type: "manual_button_click",
+          source: "portfolio_site",
+          clicked_at: new Date().toISOString(),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("웹훅 응답 실패");
+      }
+
+      alert("ok");
+    } catch (error) {
+      alert("웹훅 실행 중 오류가 발생했습니다.");
+    } finally {
+      webhookButton.disabled = false;
+      webhookButton.textContent = "웹훅 테스트 실행";
     }
   });
 }
