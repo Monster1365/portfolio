@@ -1,7 +1,6 @@
 const menuBtn = document.getElementById("menuBtn");
 const navLinks = document.getElementById("navLinks");
 const githubUsername = "Monster1365";
-const makeWebhookUrl = "https://hook.us2.make.com/smmthulbl3ctxgjs5d1xtfojy7v757e1";
 
 menuBtn.addEventListener("click", () => {
   navLinks.classList.toggle("show");
@@ -188,38 +187,38 @@ if (contactForm) {
   contactForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const name = document.getElementById("visitorName").value.trim();
-    const email = document.getElementById("visitorEmail").value.trim();
-    const message = document.getElementById("visitorMessage").value.trim();
-    const formPayload = {
-      event_type: "ai_question_submitted",
-      visitor_name: name,
-      visitor_email: email,
-      visitor_message: message,
-      submitted_at: new Date().toISOString(),
-      page_url: window.location.href,
-      user_agent: window.navigator.userAgent,
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const payload = {
+      name: document.getElementById("visitorName").value.trim(),
+      email: document.getElementById("visitorEmail").value.trim(),
+      message: document.getElementById("visitorMessage").value.trim(),
+      website: document.getElementById("website").value,
     };
 
-    setFormMessage("info", "AI 에이전트가 질문을 분석 중입니다. 잠시만 기다려주세요.");
+    setFormMessage("info", "메시지를 보내는 중입니다...");
+    if (submitButton) submitButton.disabled = true;
 
     try {
-      const response = await fetch(makeWebhookUrl, {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formPayload),
+        body: JSON.stringify(payload),
       });
 
+      const result = await response.json().catch(() => ({}));
+
       if (!response.ok) {
-        throw new Error("서버 응답 실패");
+        throw new Error(result.error || "메시지 전송에 실패했습니다.");
       }
 
-      setFormMessage("success", "질문이 성공적으로 접수되었습니다. AI 답변 메일이 곧 도착할 예정입니다.");
+      setFormMessage("success", "메시지가 전송되었습니다. 확인 후 답장드리겠습니다!");
       contactForm.reset();
     } catch (error) {
-      setFormMessage("error", "접수 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+      setFormMessage("error", error.message || "전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+    } finally {
+      if (submitButton) submitButton.disabled = false;
     }
   });
 }

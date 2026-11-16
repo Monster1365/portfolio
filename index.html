@@ -35,7 +35,7 @@
 
         <div class="hero-actions">
           <a href="activities.html" class="btn primary">GitHub 활동 보기</a>
-          <a href="mailto:gkstjgus0028@gmail.com" class="btn secondary">이메일 연락하기</a>
+          <a href="#contact" class="btn secondary">연락하기</a>
           <a href="https://github.com/Monster1365" class="btn secondary" target="_blank" rel="noreferrer">Open GitHub</a>
         </div>
       </div>
@@ -93,27 +93,29 @@
       </article>
     </section>
 
-    <section class="ai-service" aria-label="AI question service">
+    <section class="ai-service" id="contact" aria-label="Contact">
       <div class="ai-service-copy">
-        <p class="eyebrow">AI Survey Service</p>
-        <h2>AI 에이전트에게 질문하기</h2>
+        <p class="eyebrow">Contact</p>
+        <h2>Contact</h2>
         <p>
-          궁금한 내용을 남기면 AI 에이전트가 질문을 분석하고 입력한 이메일로 답변을 보낼 수 있도록
-          Make.com Webhook과 연결되는 설문 서비스입니다.
+          협업 제안, 질문, 피드백 등 무엇이든 남겨주세요.
+          메시지를 확인한 뒤 입력하신 이메일로 답장드리겠습니다.
         </p>
       </div>
 
       <form class="ai-form" id="contactForm">
         <label for="visitorName">이름</label>
-        <input type="text" id="visitorName" name="visitorName" placeholder="이름" required />
+        <input type="text" id="visitorName" name="visitorName" placeholder="이름" maxlength="100" required />
 
         <label for="visitorEmail">이메일</label>
-        <input type="email" id="visitorEmail" name="visitorEmail" placeholder="이메일" required />
+        <input type="email" id="visitorEmail" name="visitorEmail" placeholder="이메일" maxlength="254" required />
 
-        <label for="visitorMessage">질문</label>
-        <textarea id="visitorMessage" name="visitorMessage" placeholder="AI 에이전트에게 할 질문을 입력하세요" required></textarea>
+        <label for="visitorMessage">메시지</label>
+        <textarea id="visitorMessage" name="visitorMessage" placeholder="전하고 싶은 내용을 입력하세요" maxlength="5000" required></textarea>
 
-        <button class="btn primary" type="submit">AI 에이전트에게 질문하기</button>
+        <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;" />
+
+        <button class="btn primary" type="submit">메시지 보내기</button>
         <div class="form-message" id="responseMessage" role="status" aria-live="polite"></div>
       </form>
     </section>
